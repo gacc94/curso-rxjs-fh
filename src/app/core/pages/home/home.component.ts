@@ -43,13 +43,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
     ngOnInit(): void {
         const numbers = [1,2,43,5,76,1];
-        numbers.every( (number) => number);
-
-        const isUnion = numbers.join(',')
-
-
-        console.log(isUnion);
-
 
 
 
