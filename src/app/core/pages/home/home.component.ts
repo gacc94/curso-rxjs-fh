@@ -8,8 +8,13 @@ import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
 import {FormControl, FormsModule, ReactiveFormsModule,} from "@angular/forms";
 import {IPost} from "../../../interfaces/post.interface";
-import {fromEvent, interval, Observable, pluck, timer, combineLatest, zip, catchError, of, switchMap} from "rxjs";
-import {map, take} from "rxjs/operators";
+import {
+    delay,
+    fromEvent, map,
+    Observable,
+    pluck, tap,
+} from "rxjs";
+import {Beer} from "@utils/functional programming/02-high-order-function";
 
 @Component({
     selector: 'app-home',
@@ -30,7 +35,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     private readonly _http: HttpClient = inject<HttpClient>(HttpClient);
     @ViewChild('name', {static: true}) name          !: ElementRef;
     @ViewChild('password', {static: true}) password  !: ElementRef;
-
+    private isValid: boolean = true;
 
     fieldName: FormControl = new FormControl('');
     fieldPassword: FormControl = new FormControl('');
@@ -39,20 +44,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     ngOnInit(): void {
-        const obj = {
-            name: "Human",
-            classification: "mammal",
-            designation: "sentient",
-            average_height: "180",
-            skin_colors: "caucasian, black, asian, hispanic "
-        }
 
-        zip(interval(100), interval(100)).pipe(take(10)).subscribe(console.log);
-
-        this.getPosts(1).pipe(
-            switchMap((val) => this.getPosts(val[0].id)),
-            catchError(err => of({err})),
-        ).subscribe(console.log)
 
 
     }
@@ -61,8 +53,14 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         return this._http.get<Array<IPost>>(`https://jsonplaceholder.typicode.com/comments?postId=${id}`)
     }
 
-    getDataApi(){
-        return this._http.get(`https://swapi.dev/api`);
+    getDataApi(res: number) {
+        return (res: number): string => {
+            return `value: ${res}`
+        }
+    }
+
+    getDataJson(): Observable<any[]>{
+        return this._http.get<any[]>('assets/data.json');
     }
 
     onInput($event: Event): void {

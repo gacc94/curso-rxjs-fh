@@ -1,4 +1,10 @@
 import {distinctUntilChanged, from, of} from "rxjs";
+
+/**
+ *
+* DistinctUntilChanged => evalua si el dato anterior ya fue emitido, si es un true ,
+* completa continua emitiendo los datos, hasta llegar al ultimo.
+ * */
 const heroes = [
     {
         name: 'a'
@@ -22,10 +28,7 @@ const heroes = [
 
 const  numbers$ = of(1,2,3,'3',3);
 
-/*
-* DistinctUntilChanged => evalua si el dato anterior ya fue emitido, si es un true ,
-* completa continua emitiendo los datos, hasta llegar al ultimo.
- * */
+
 numbers$.pipe(
     distinctUntilChanged()
 ).subscribe(console.log);
