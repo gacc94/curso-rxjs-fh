@@ -4,7 +4,7 @@ import {HttpClient} from "@angular/common/http";
 
 const _http = inject(HttpClient);
 
-const employees = [
+export const employees = [
     {
         id: '005',
         name: 'Pedro',

@@ -9,12 +9,10 @@ import {MatIconModule} from "@angular/material/icon";
 import {FormControl, FormsModule, ReactiveFormsModule,} from "@angular/forms";
 import {IPost} from "../../../interfaces/post.interface";
 import {
-    delay,
     fromEvent, map,
     Observable,
     pluck, tap,
 } from "rxjs";
-import {Beer} from "@utils/functional programming/02-high-order-function";
 
 @Component({
     selector: 'app-home',
@@ -44,6 +42,14 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     ngOnInit(): void {
+        const numbers = [1,2,43,5,76,1];
+        numbers.every( (number) => number);
+
+        const isUnion = numbers.join(',')
+
+
+        console.log(isUnion);
+
 
 
 
