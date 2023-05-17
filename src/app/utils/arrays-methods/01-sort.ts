@@ -41,7 +41,19 @@ employees.sort((a,b) => {
 employees.sort((a, b) => {
     const idComparison = a.id.localeCompare(b.id);
     const nameComparison = a.name.toLowerCase().localeCompare(b.name.toLowerCase());
-    return idComparison !== 0 ? idComparison : nameComparison;
+    return (idComparison !== 0) ? idComparison : nameComparison;
+});
+
+
+employees.sort((a,b) => {
+    let first  = parseInt(a.id);
+    let second = parseInt(b.id);
+    if (first > second){
+        return 1;
+    } if (first < second) {
+        return -1;
+    }
+    return 0;
 });
 
 console.log(employees);

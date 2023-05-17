@@ -44,8 +44,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     ngOnInit(): void {
         const numbers = [1,2,43,5,76,1];
 
-
-
     }
 
     getPosts(id: string | number): Observable<Array<IPost>> {
