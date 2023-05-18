@@ -30,10 +30,11 @@ import {
 })
 export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
-    private readonly _http: HttpClient = inject<HttpClient>(HttpClient);
+    readonly _http: HttpClient = inject<HttpClient>(HttpClient);
+
     @ViewChild('name', {static: true}) name          !: ElementRef;
     @ViewChild('password', {static: true}) password  !: ElementRef;
-    private isValid: boolean = true;
+    private isValid!: boolean;
 
     fieldName: FormControl = new FormControl('');
     fieldPassword: FormControl = new FormControl('');
@@ -43,6 +44,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
     ngOnInit(): void {
         const numbers = [1,2,43,5,76,1];
+        // x = ['1',2];
+        console.log(undefined === null);
 
     }
 
@@ -80,4 +83,3 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
 }
-
