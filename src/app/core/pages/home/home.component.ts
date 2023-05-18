@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 import {MatButtonModule} from "@angular/material/button";
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
 import {FormControl, FormsModule, ReactiveFormsModule,} from "@angular/forms";
@@ -11,8 +11,10 @@ import {IPost} from "../../../interfaces/post.interface";
 import {
     fromEvent, map,
     Observable,
-    pluck, tap,
+    pluck
 } from "rxjs";
+import {PostService} from "../../../services/post.service";
+import {logMessages} from "@angular-devkit/build-angular/src/builders/browser-esbuild/esbuild";
 
 @Component({
     selector: 'app-home',
@@ -30,7 +32,8 @@ import {
 })
 export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
-    readonly _http: HttpClient = inject<HttpClient>(HttpClient);
+    private readonly _http: HttpClient = inject<HttpClient>(HttpClient);
+    private _postServ: PostService = inject<PostService>(PostService);
 
     @ViewChild('name', {static: true}) name          !: ElementRef;
     @ViewChild('password', {static: true}) password  !: ElementRef;
@@ -45,7 +48,15 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     ngOnInit(): void {
         const numbers = [1,2,43,5,76,1];
         // x = ['1',2];
-        console.log(undefined === null);
+
+        this._postServ.getAll().pipe(
+            map((res) => res.data)
+        ).subscribe({
+            next: (value) => {
+                const a  = value.page ?? '';
+                console.log(value)
+            }
+        });
 
     }
 
@@ -83,3 +94,29 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
