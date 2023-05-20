@@ -8,8 +8,8 @@ import {IPost} from "../interfaces/post.interface";
 })
 export class PostService extends RequestHTTP<any>{
 
-    constructor() {
-        super();
+    constructor(name : string) {
+        super(name);
         this.url = 'https://reqres.in/api/users';
     }
 

@@ -7,6 +7,11 @@ export abstract class RequestHTTP<T> {
     protected readonly http: HttpClient = inject(HttpClient);
     protected url: string = '';
 
+    protected constructor(
+       name : string,
+    ) {}
+
+
     getAll(): Observable<T>{
         return this.http.get<T>(`${this.url}`);
     }
