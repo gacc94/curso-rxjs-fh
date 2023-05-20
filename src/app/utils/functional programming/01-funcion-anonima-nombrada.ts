@@ -30,3 +30,4 @@ function resta(a: number, b: number) {
 }
 
 console.log(resta(5, 3)); // Salida: 2
+

@@ -50,13 +50,14 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         // x = ['1',2];
 
         this._postServ.getAll().pipe(
-            map((res) => res.data)
+            map((res) => res.data),
         ).subscribe({
             next: (value) => {
                 const a  = value.page ?? '';
                 console.log(value)
             }
         });
+
 
     }
 
